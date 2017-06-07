@@ -1,0 +1,9 @@
+import React, { PropTypes } from 'react'
+
+const CoursesPage = () => {
+  return (
+    <div>Courses</div>
+  )
+}
+
+export default CoursesPage

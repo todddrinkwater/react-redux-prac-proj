@@ -1,3 +1,16 @@
-export function createCourse(course){
-  return { type: 'CREATE_COURSE', course}
+import * as types from './actionTypes'
+import courseApi from '../api/mockCourseApi'
+
+export function loadCoursesSuccess(course){
+  return { type: types.LOAD_COURSES_SUCCESS, course }
 }
+
+export function loadCourses(courses){
+  return function(dispatch){
+    courseApi.getAllCourses().then(courses => {
+      dispatch(loadCoursesSuccess(courses))
+    }).catch(error => {
+        throw err
+      })
+    }
+  }

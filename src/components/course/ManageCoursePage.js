@@ -1,7 +1,7 @@
 import React, { PropTypes} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as courseActions from '../../actions/CourseActions'
+import * as courseActions from '../../actions/courseActions'
 import CourseForm from './CourseForm'
 import {contextTypes} from 'react-router'
 
@@ -34,6 +34,10 @@ class ManageCoursePage extends React.Component {
   saveCourse(event){
     event.preventDefault()
     this.props.actions.saveCourse(this.state.course)
+    .then(() => this.redirect())
+  }
+
+  redirect(){
     this.context.router.push('/courses')
   }
 
@@ -67,6 +71,7 @@ function getCourseById(courses, id) {
 }
 
 function mapStateToProps(state, ownProps){
+  console.log(state.courses, "state.courses")
   const courseId = ownProps.params.id
   let course = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''}
 
